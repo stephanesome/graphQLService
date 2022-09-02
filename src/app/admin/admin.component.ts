@@ -3,7 +3,7 @@ import {AbstractControl, FormArray, FormBuilder, FormControl, Validators} from '
 import {Author, Book} from '../books/model/book';
 import {BooksService} from '../books/service/books.service';
 
-function categoryValidator(control: FormControl): { [s: string]: boolean } | null {
+function categoryValidator(control: FormControl<string>): { [s: string]: boolean } | null {
   const validCategories = ['Kids', 'Tech', 'Cook'];
   if (!validCategories.includes(control.value)) {
     return {invalidCategory: true};
@@ -44,17 +44,17 @@ export class AdminComponent implements OnInit {
   onSubmit(): void {
     const book =  new Book(0,
       Number(this.bookForm.value.bookNumber),
-      this.bookForm.value.category,
-      this.bookForm.value.title,
+      <string>this.bookForm.value.category,
+      <string>this.bookForm.value.title,
       Number(this.bookForm.value.cost),
       [],
       Number(this.bookForm.value.year),
-      this.bookForm.value.description);
-    const authors = this.bookForm.value.authors;
+      <string>this.bookForm.value.description);
+    const authors = <Author[]>this.bookForm.value.authors;
     this.booksService.addBook(book).subscribe(_ => {
       authors.forEach((author: Author) => {
         this.booksService.addAuthor(Object.assign(author, {bookNumber: book.bookNumber}))
-          .subscribe(a => {});
+          .subscribe(_ => {});
       });
     });
     this.bookForm.reset();
