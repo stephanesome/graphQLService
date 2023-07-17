@@ -7,8 +7,12 @@ type Author { bookNumber: Int!
     lastName: String!
 }
 
+input CreateAuthorInput {
+    bookNumber: Int!
+    firstName: String!,
+    lastName:String!
+}
+
 extend type Mutation {
-    newAuthor(bookNumber: Int!
-        firstName: String!,
-        lastName:String!) : Author!
+    newAuthor(createAuthorInput: CreateAuthorInput!) : Author!
 }
