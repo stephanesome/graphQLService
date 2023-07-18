@@ -48,7 +48,7 @@ export class AdminComponent implements OnInit {
       <string>this.bookForm.value.title,
       Number(this.bookForm.value.cost),
       [],
-      Number(this.bookForm.value.year),
+      <string>this.bookForm.value.year,
       <string>this.bookForm.value.description);
     const authors = <Author[]>this.bookForm.value.authors;
     this.booksService.addBook(book).subscribe(_ => {

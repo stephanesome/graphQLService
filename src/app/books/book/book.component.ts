@@ -18,7 +18,7 @@ export class BookComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      const numb = Number(params.id);
+      const numb = Number(params['id']);
       this.subscription = this.booksService.getBook(numb).subscribe(
         ({ data, loading }) => {
           this.selectedBook = data.bookByNumber;

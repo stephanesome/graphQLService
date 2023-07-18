@@ -6,7 +6,7 @@ export class Book {
     public title: string,
     public cost: number,
     public authors?: Author[],
-    public year?: number,
+    public year?: string,
     public description?: string
   ) {}
 }
