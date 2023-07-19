@@ -7,13 +7,11 @@ import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.CrossOrigin
 import seg3x02.booksapigraphql.entity.Author
 import seg3x02.booksapigraphql.repository.AuthorRepository
 import seg3x02.booksgraphqlapi.resolvers.types.CreateAuthorInput
 
 @Controller
-@CrossOrigin(origins = ["http://localhost:4200"])
 class AuthorsController(val mongoOperations: MongoOperations,
                         private val authorRepository: AuthorRepository
 ) {

@@ -6,8 +6,8 @@ import org.springframework.data.mongodb.core.query.Query
 import org.springframework.graphql.data.method.annotation.Argument
 import org.springframework.graphql.data.method.annotation.MutationMapping
 import org.springframework.graphql.data.method.annotation.QueryMapping
+import org.springframework.graphql.data.method.annotation.SchemaMapping
 import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.CrossOrigin
 import seg3x02.booksapigraphql.entity.Author
 import seg3x02.booksapigraphql.entity.Book
 import seg3x02.booksapigraphql.repository.BookRepository
@@ -15,36 +15,25 @@ import seg3x02.booksgraphqlapi.resolvers.types.CreateBookInput
 import java.util.*
 
 @Controller
-@CrossOrigin(origins = ["http://localhost:4200"])
 class BooksController(private val bookRepository: BookRepository,
                       private val mongoOperations: MongoOperations
 ) {
-
     @QueryMapping
     fun books(): List<Book> {
-        val list = bookRepository.findAll()
-        for (bk in list) {
-            bk.authors = getAuthors(bk.bookNumber)
-        }
-        return list
+        return bookRepository.findAll()
     }
 
-    private fun getAuthors(@Argument bookNumber: Int): List<Author> {
+    @SchemaMapping(typeName="Book", field="authors")
+    fun authors(book: Book): List<Author> {
         val query = Query()
-        query.addCriteria(Criteria.where("bookNumber").`is`(bookNumber))
+        query.addCriteria(Criteria.where("bookNumber").`is`(book.bookNumber))
         return mongoOperations.find(query, Author::class.java)
     }
 
     @QueryMapping
     fun bookById(@Argument bookId: String): Book? {
         val book = bookRepository.findById(bookId)
-        return if (book.isPresent) {
-            val bk = book.get()
-            bk.authors = getAuthors(bk.bookNumber)
-            bk
-        } else {
-            null
-        }
+        return book.orElse(null)
     }
 
     @QueryMapping
@@ -52,13 +41,7 @@ class BooksController(private val bookRepository: BookRepository,
         val query = Query()
         query.addCriteria(Criteria.where("bookNumber").`is`(bookNumber))
         val result = mongoOperations.find(query, Book::class.java)
-        return if (result.isNotEmpty()) {
-            val bk = result[0]
-            bk.authors = getAuthors(bk.bookNumber)
-            bk
-        } else {
-            null
-        }
+        return result.firstOrNull()
     }
 
     @MutationMapping
