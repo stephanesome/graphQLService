@@ -1,4 +1,4 @@
-package seg3x02.booksgraphqlapi.resolvers.types
+package seg3x02.booksapigraphql.resolvers.types
 
 class CreateBookInput(
     val bookNumber: Int? = null,

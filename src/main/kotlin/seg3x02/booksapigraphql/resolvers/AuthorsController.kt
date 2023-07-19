@@ -9,7 +9,7 @@ import org.springframework.graphql.data.method.annotation.QueryMapping
 import org.springframework.stereotype.Controller
 import seg3x02.booksapigraphql.entity.Author
 import seg3x02.booksapigraphql.repository.AuthorRepository
-import seg3x02.booksgraphqlapi.resolvers.types.CreateAuthorInput
+import seg3x02.booksapigraphql.resolvers.types.CreateAuthorInput
 
 @Controller
 class AuthorsController(val mongoOperations: MongoOperations,

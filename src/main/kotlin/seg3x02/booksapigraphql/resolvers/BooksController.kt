@@ -11,7 +11,7 @@ import org.springframework.stereotype.Controller
 import seg3x02.booksapigraphql.entity.Author
 import seg3x02.booksapigraphql.entity.Book
 import seg3x02.booksapigraphql.repository.BookRepository
-import seg3x02.booksgraphqlapi.resolvers.types.CreateBookInput
+import seg3x02.booksapigraphql.resolvers.types.CreateBookInput
 import java.util.*
 
 @Controller
