@@ -11,9 +11,8 @@ describe('BookComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BookComponent ],
-      imports: [RouterTestingModule, HttpClientTestingModule, ApolloTestingModule]
-    })
+    imports: [RouterTestingModule, HttpClientTestingModule, ApolloTestingModule, BookComponent]
+})
     .compileComponents();
   });
 

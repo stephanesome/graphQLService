@@ -12,9 +12,8 @@ describe('AdminComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AdminComponent ],
-      imports: [RouterTestingModule, HttpClientTestingModule, FormsModule, ReactiveFormsModule, ApolloTestingModule]
-    })
+    imports: [RouterTestingModule, HttpClientTestingModule, FormsModule, ReactiveFormsModule, ApolloTestingModule, AdminComponent]
+})
     .compileComponents();
   });
 
