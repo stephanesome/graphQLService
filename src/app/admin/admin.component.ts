@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {Author, Book} from '../books/model/book';
 import {BooksService} from '../books/service/books.service';
@@ -19,7 +19,9 @@ function categoryValidator(control: FormControl<string>): { [s: string]: boolean
     standalone: true,
     imports: [FormsModule, ReactiveFormsModule, NgFor]
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent {
+  private builder: FormBuilder = inject(FormBuilder);
+  private booksService: BooksService = inject(BooksService);
   bookForm = this.builder.group({
     bookNumber: ['', [Validators.required, Validators.pattern('[1-9]\\d{3}')]],
     category: ['', [Validators.required, categoryValidator]],
@@ -36,12 +38,6 @@ export class AdminComponent implements OnInit {
   get cost(): AbstractControl {return <AbstractControl>this.bookForm.get('cost'); }
   get authors(): FormArray {
     return this.bookForm.get('authors') as FormArray;
-  }
-
-  constructor(private builder: FormBuilder,
-              private booksService: BooksService) { }
-
-  ngOnInit(): void {
   }
 
   onSubmit(): void {

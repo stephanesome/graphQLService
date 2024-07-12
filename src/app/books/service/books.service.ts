@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Author, Book} from '../model/book';
 import {Apollo, gql} from "apollo-angular";
 import {Observable} from "rxjs";
@@ -56,8 +56,7 @@ const ADD_AUTHOR = gql`
   providedIn: 'root'
 })
 export class BooksService {
-  constructor(private apollo: Apollo) {}
-
+  private apollo: Apollo = inject(Apollo);
 
   public getBook(bookNumber: number): Observable<ApolloQueryResult<any>> {
     return this.apollo

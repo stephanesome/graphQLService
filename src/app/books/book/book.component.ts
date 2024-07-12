@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Book} from '../model/book';
 import {BooksService} from '../service/books.service';
@@ -16,9 +16,8 @@ import { NgIf } from '@angular/common';
 export class BookComponent implements OnInit, OnDestroy {
   selectedBook: Book | null = null;
   private subscription!: Subscription;
-
-  constructor(private route: ActivatedRoute, private booksService: BooksService) {
-  }
+  private route: ActivatedRoute = inject(ActivatedRoute);
+  private booksService: BooksService = inject(BooksService);
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
