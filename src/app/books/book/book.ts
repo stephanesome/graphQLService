@@ -5,7 +5,6 @@ import {BooksService} from '../service/books-service';
 import {Subscription} from "rxjs";
 import { AuthornamesPipe } from '../../pipes/authornames.pipe';
 
-
 @Component({
   selector: 'app-book',
   templateUrl: './book.html',

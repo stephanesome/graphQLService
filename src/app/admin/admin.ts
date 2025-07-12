@@ -3,7 +3,6 @@ import { AbstractControl, FormArray, FormBuilder, FormControl, Validators, Forms
 import {AuthorEntity, BookEntity} from '../books/model/bookEntity';
 import {BooksService} from '../books/service/books-service';
 
-
 function categoryValidator(control: FormControl<string>): { [s: string]: boolean } | null {
   const validCategories = ['Kids', 'Tech', 'Cook'];
   if (!validCategories.includes(control.value)) {
