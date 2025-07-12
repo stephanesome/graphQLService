@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {Author, Book} from '../model/book';
+import {AuthorEntity, BookEntity} from '../model/bookEntity';
 import {Apollo, gql} from "apollo-angular";
 import {Observable} from "rxjs";
 import {ApolloQueryResult, FetchResult} from "@apollo/client/core";
@@ -68,7 +68,7 @@ export class BooksService {
     });
   }
 
-  public addBook(b: Book): Observable<FetchResult<unknown>> {
+  public addBook(b: BookEntity): Observable<FetchResult<unknown>> {
     return this.apollo.mutate({
         mutation: ADD_BOOK,
         variables: {
@@ -83,7 +83,7 @@ export class BooksService {
     );
   }
 
-  addAuthor(author: Author): Observable<FetchResult<unknown>> {
+  addAuthor(author: AuthorEntity): Observable<FetchResult<unknown>> {
     return this.apollo.mutate({
         mutation: ADD_AUTHOR,
         variables: {

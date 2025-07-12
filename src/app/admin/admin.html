@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Book Form</h1>
+  <h1>BookEntity Form</h1>
   <button (click)="addAuthor()" class="btn btn-primary">Add Author</button>
   <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
     <div class="mb-3">
@@ -7,7 +7,7 @@
       <input type="text" class="form-control" id="bookNumber"  formControlName="bookNumber" required>
       @if (bookNumber.dirty && !bookNumber.valid) {
         <div class="alert alert-danger">
-          Book number must be 4 digits long starting with a number different from 0.
+          BookEntity number must be 4 digits long starting with a number different from 0.
         </div>
       }
     </div>

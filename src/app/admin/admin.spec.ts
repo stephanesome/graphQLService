@@ -1,25 +1,26 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BookComponent } from './book.component';
+import { Admin } from './admin';
 import {RouterTestingModule} from "@angular/router/testing";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ApolloTestingModule} from "apollo-angular/testing";
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
-describe('BookComponent', () => {
-  let component: BookComponent;
-  let fixture: ComponentFixture<BookComponent>;
+describe('Admin', () => {
+  let component: Admin;
+  let fixture: ComponentFixture<Admin>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [RouterTestingModule, ApolloTestingModule, BookComponent],
+    imports: [RouterTestingModule, FormsModule, ReactiveFormsModule, ApolloTestingModule, Admin],
     providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BookComponent);
+    fixture = TestBed.createComponent(Admin);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,20 +1,19 @@
 import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Book} from '../model/book';
-import {BooksService} from '../service/books.service';
+import {BookEntity} from '../model/bookEntity';
+import {BooksService} from '../service/books-service';
 import {Subscription} from "rxjs";
 import { AuthornamesPipe } from '../../pipes/authornames.pipe';
 
 
 @Component({
   selector: 'app-book',
-  templateUrl: './book.component.html',
-  styleUrls: ['./book.component.css'],
-  standalone: true,
+  templateUrl: './book.html',
+  styleUrls: ['./book.css'],
   imports: [AuthornamesPipe]
 })
-export class BookComponent implements OnInit, OnDestroy {
-  selectedBook: Book | null = null;
+export class Book implements OnInit, OnDestroy {
+  selectedBook: BookEntity | null = null;
   private subscription!: Subscription;
   private route: ActivatedRoute = inject(ActivatedRoute);
   private booksService: BooksService = inject(BooksService);
